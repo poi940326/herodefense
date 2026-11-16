@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hero Defense — 테스트 빌드</title>
+<!-- 팀원 테스트용 내려받기 페이지. python Tools/release/publish_github.py 가 0.1.0 · 2026-11-16 · <ul>
+      <li>첫 팀원 테스트 빌드 (혼자 하기만, 2인 온라인은 다음 빌드)</li>
+      <li>15분 한 판: 30웨이브, 웨이브마다 고블린 무리가 한꺼번에 몰려옴, 30웨이브 고블린 대장을 잡으면 승리</li>
+      <li>몬스터: 일반 · 돌진형(붉음) · 추적형(보라, 영웅을 쫓아옴) · 원거리 · 탱커(회색) · 엘리트 · 보스 — 색만 바꾼 임시 그림</li>
+      <li>영웅 2종(소드맨 · 마법사), 레벨 7 · 12에 전직 (클래스 10종), 정글 캠프 · 퀘스트 · 상점</li>
+      <li>휴식 시간의 강화 선택은 아직 없음 (웨이브만 쉼)</li>
+    </ul> 를 채워 올린다. -->
+<style>
+  :root { --bg: #12142a; --panel: #1b1e3c; --ink: #f0eee6; --dim: #9a9cb4; --line: #2e3260; --gold: #f6ce68; --gold-d: #b8862e; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+    padding: 32px 16px; line-height: 1.6;
+  }
+  main { max-width: 640px; margin: 0 auto; }
+  .card { background: var(--panel); border: 2px solid var(--gold-d); border-radius: 6px; padding: 28px 24px; margin-bottom: 18px; }
+  h1 { margin: 0; font-size: 32px; color: var(--gold); letter-spacing: 0.02em; }
+  .sub { margin: 4px 0 22px; color: var(--dim); font-size: 14px; }
+  .dl {
+    display: block; text-align: center; background: var(--gold); color: #1b1e3c; font-weight: 700;
+    font-size: 18px; padding: 14px; border-radius: 4px; text-decoration: none; border: 2px solid #fff3c4;
+  }
+  .dl:hover { filter: brightness(1.08); }
+  .meta { margin-top: 10px; text-align: center; color: var(--dim); font-size: 13px; }
+  h2 { font-size: 17px; color: var(--gold); margin: 0 0 10px; }
+  ul, ol { margin: 0; padding-left: 20px; }
+  li { margin: 3px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  td { padding: 5px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { white-space: nowrap; color: var(--gold); width: 1%; padding-right: 14px; }
+  kbd { background: #2a2e58; border: 1px solid #4a4f8a; border-radius: 3px; padding: 0 5px; font-family: inherit; font-size: 13px; }
+  footer { text-align: center; color: var(--dim); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Hero Defense</h1>
+    <div class="sub">영웅 디펜스 (가칭) · 팀원 테스트 빌드 · Windows</div>
+    <a class="dl" href="https://github.com/poi940326/herodefense/releases/latest/download/HeroDefense_Win.zip">내려받기 (v0.1.0, zip)</a>
+    <div class="meta">2026-11-16 · 압축을 풀고 <b>HeroDefense.exe</b> 실행 · 처음 실행 때 Windows 경고가 뜨면 "추가 정보 → 실행"</div>
+  </div>
+
+  <div class="card">
+    <h2>이번 빌드</h2>
+    <ul>
+      <li>첫 팀원 테스트 빌드 (혼자 하기만, 2인 온라인은 다음 빌드)</li>
+      <li>15분 한 판: 30웨이브, 웨이브마다 고블린 무리가 한꺼번에 몰려옴, 30웨이브 고블린 대장을 잡으면 승리</li>
+      <li>몬스터: 일반 · 돌진형(붉음) · 추적형(보라, 영웅을 쫓아옴) · 원거리 · 탱커(회색) · 엘리트 · 보스 — 색만 바꾼 임시 그림</li>
+      <li>영웅 2종(소드맨 · 마법사), 레벨 7 · 12에 전직 (클래스 10종), 정글 캠프 · 퀘스트 · 상점</li>
+      <li>휴식 시간의 강화 선택은 아직 없음 (웨이브만 쉼)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>조작</h2>
+    <table>
+      <tr><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / 방향키</td><td>이동 (공격은 자동)</td></tr>
+      <tr><td><kbd>Q</kbd> <kbd>E</kbd> <kbd>R</kbd></td><td>스킬 (Q는 2레벨, E는 5레벨, R은 7레벨 전직 뒤)</td></tr>
+      <tr><td><kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd></td><td>영웅 선택 · 전직 선택 · 상점 구매 (상점 근처)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>타이틀로 나가기</td></tr>
+      <tr><td>시험용</td><td><kbd>N</kbd> 다음 웨이브로 건너뛰기 · <kbd>L</kbd> 레벨 업</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>봐 주세요</h2>
+    <ul>
+      <li>고블린 무리가 몰려올 때 손맛 (너무 쉬움 / 적당 / 버거움)</li>
+      <li>몇 웨이브까지 버텼는지, 언제 전직했는지</li>
+      <li>헷갈렸던 화면 · 조작, 버그 (언제, 무엇을 하다가)</li>
+    </ul>
+  </div>
+  <footer>Hero Defense (가칭) · 내부 테스트용</footer>
+</main>
+</body>
+</html>
